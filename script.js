@@ -41,21 +41,21 @@ const tileheight = 48;
 
 // RETRIEVE SPRITES
 const playerImg = new Image();
-playerImg.src = "Sprites/character.png";
+playerImg.src = "character.png";
 const playerImg2 = new Image();
-playerImg2.src = "Sprites/character2.png";
+playerImg2.src = "character2.png";
 const backgroundImg = new Image();
-backgroundImg.src = "Sprites/background.png";
+backgroundImg.src = "background.png";
 const logImg = new Image();
-logImg.src = "Sprites/log.png";
+logImg.src = "log.png";
 const sawbladeImg = new Image();
-sawbladeImg.src = "Sprites/sawblade.png";
+sawbladeImg.src = "sawblade.png";
 const playButtonImg = new Image();
-playButtonImg.src = "Sprites/playbutton.png";
+playButtonImg.src = "playbutton.png";
 const logoImg = new Image();
-logoImg.src = "Sprites/logo.png";
+logoImg.src = "logo.png";
 const highcoreImg = new Image();
-highcoreImg.src = "Sprites/highscore.png";
+highcoreImg.src = "highscore.png";
 
 const playButton = {
     x: canvas.width / 2 - 72, // Center the button horizontally
@@ -400,24 +400,24 @@ function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
 };
 
 // RETRIEVE AUDIO
-const themeSong = new Audio('Sprites/lumbersmacksongv1.mp3');
+const themeSong = new Audio('lumbersmacksongv1.mp3');
 themeSong.loop = true;
 themeSong.volume = 0.6;
 themeSong.muted = false;
 
-const jumpAudio = new Audio('Sprites/lumbersmackjumpsoundv1.mp3');
+const jumpAudio = new Audio('lumbersmackjumpsoundv1.mp3');
 jumpAudio.loop = false;
 jumpAudio.volume = 1;
 jumpAudio.preload = 'auto';
 jumpAudio.muted = false;
 
-const logAudio = new Audio('Sprites/lumbersmacksmacksoundv1.mp3');
+const logAudio = new Audio('lumbersmacksmacksoundv1.mp3');
 logAudio.loop = false;
 logAudio.volume = 1;
 logAudio.preload = 'auto';
 logAudio.muted = false;
 
-const deathAudio = new Audio('Sprites/lumbersmackdeathsoundv1.mp3');
+const deathAudio = new Audio('lumbersmackdeathsoundv1.mp3');
 deathAudio.loop = false;
 deathAudio.volume = 1;
 deathAudio.preload = 'auto';
