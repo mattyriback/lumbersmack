@@ -1,12 +1,6 @@
-
 // GRABS CANVAS FROM HTML AND ALLOWS 2D GRAPHICS 
 const canvas = document.getElementById("gameCanvas"); 
 const ctx = canvas.getContext("2d"); 
-
-canvas.addEventListener('click', checkPlayButtonClick);
-
-
-//ctx.imageSmoothingEnabled = false; // smoothens pixel sprites & animations
 
 // CANVAS DIMENTIONS
 canvas.width = 360;
@@ -32,8 +26,6 @@ const player = {
     attacking: false,
     death: false
 };
-
-//balls
 
 // SPRITE TILE
 const tileWidth = 48;
@@ -166,108 +158,10 @@ function checkPlayerLogCollision() {
 
 function updateScore() {
     score += 1;
-}
+};
 
 
-// SAWBLADES
-/* class Sawblade {
-    constructor(x, y, width, height, frameX, frameY, speed, gravity, spawnDelay = 0) {
-        this.sawX = Math.random() * (canvas.width - width);
-        this.sawY = y;
-        this.sawWidth = width;
-        this.sawHeight = height;
-        this.frameX = frameX;
-        this.frameY = frameY;
-        this.speed = speed;
-        this.gravity = gravity;
-        this.velocityY = 0;
-        this.disappearY = 660;
-        this.spawnDelay = spawnDelay;  // Delay before sawblade starts moving
-        this.spawned = false;         // Flag to track if sawblade is spawned
-        this.spawnStartTime = null;   // Tracks the time when spawning starts
-        this.moving = true;
-        this.totalFrames = 4;
-    }
 
-    drawSawblade() {
-        // Make sure the source x (for sprite) is determined by frameX
-        ctx.drawImage(sawbladeImg, this.frameX * 48, 0, 48, 48, this.sawX, this.sawY, this.sawWidth * 1.5, this.sawHeight * 1.5);
-    }
-
-    moveSawblade() {
-        if (this.spawned) {
-            if (this.sawY < this.disappearY) {
-                this.sawY += this.speed;
-            }
-        }
-        this.updateFrame();
-    }
-
-    updateSawblade() {
-        if (this.sawY === 650) {
-            this.resetSawblade();
-        }
-    }
-    
-    updateFrame() {
-        this.frameX++;  // Simply increment the frame
-
-        // Reset to 0 if frame exceeds the total frames (4 in this case)
-        if (this.frameX >= this.totalFrames) {
-            this.frameX = 0; // Loop back to the first frame
-        }
-    }
-
-    resetSawblade(sawblades) {
-        do {
-            this.sawX = Math.random() * (canvas.width - 48);
-            this.sawY = 0;  // Start from the top of the canvas
-        } while (checkOverlap(this.sawX, this.sawY, sawblades));  // Check if the new position overlaps with any existing sawblades
-    
-        this.spawned = false;
-        this.spawnStartTime = null;
-    }
-
-    updateFrame() {
-        this.frameX++;  // Increment the frame to show the next frame
-
-        // Reset the frame to 0 if it exceeds the number of frames
-        if (this.frameX >= this.totalFrames) {
-            this.frameX = 0;
-        }
-    }
-
-    checkSpawn() {
-        if (player.death) return;
-        if (!this.spawned && this.spawnStartTime === null) {
-            this.spawnStartTime = Date.now();
-        }
-        if (this.spawnStartTime && Date.now() - this.spawnStartTime >= this.spawnDelay) {
-            this.spawned = true;
-        }
-    }
-
-    checkSawCollision(player) {
-        if (player.x + player.width > this.sawX &&
-            player.x < this.sawX + 25 &&
-            player.y + player.height > this.sawY &&
-            player.y < this.sawY + 25) {
-
-            console.log("Sawblade collision detected!");
-
-            if (!player.death) {
-                player.death = true;
-                player.frameX = 8; // Immediately trigger death animation
-                player.velocityY = 0; // Stop vertical movement
-                player.y = 450;       // Ensure the player stays on the ground
-                deathAudio.play();     // Play death sound
-                console.log("Player has died!");
-            }
-            return true;
-        }
-        return false;  // No collision
-    }
-}; 
 
 
 let sawblades = [
@@ -578,14 +472,6 @@ function drawFooter() {
     ctx.fillText("By Matty Riback", 145, 630);  // Draw the score at coordinates
 }
 
-/* function drawRestartScreen() {
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
-    ctx.drawImage(highcoreImg, 100, 200, 270, 480)
-    ctx.drawImage(playButtonImg, playButton.x, playButton.y, playButton.width, playButton.height);
-    ctx.drawImage(playerImg, player.width, player.height, tileWidth, tileheight, player.x, player.y, 100, 100);
-}; */
-
 function drawStartScreen() {
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
@@ -764,46 +650,3 @@ function toggleMobileButtons() {
         }
     });
 }
-
-// Call it when the page loads and whenever the window is resized
-window.addEventListener('load', toggleMobileButtons);
-window.addEventListener('resize', toggleMobileButtons);
-
-const leftButton = document.getElementById('leftButton');
-const rightButton = document.getElementById('rightButton');
-const jumpButton = document.getElementById('jumpButton');
-const attackButton = document.getElementById('attackButton');
-
-// Add event listeners for touch or click events on mobile
-leftButton.addEventListener('touchstart', () => {
-    keys[65] = true;  // Move left (A key)
-});
-
-rightButton.addEventListener('touchstart', () => {
-    keys[68] = true;  // Move right (D key)
-});
-
-jumpButton.addEventListener('touchstart', () => {
-    keys[32] = true;  // Jump (Spacebar)
-});
-
-attackButton.addEventListener('touchstart', () => {
-    player.attacking = true;  // Trigger attack
-});
-
-// Stop movement or actions when touch ends
-leftButton.addEventListener('touchend', () => {
-    keys[65] = false;
-});
-
-rightButton.addEventListener('touchend', () => {
-    keys[68] = false;
-});
-
-jumpButton.addEventListener('touchend', () => {
-    keys[32] = false;
-});
-
-attackButton.addEventListener('touchend', () => {
-    player.attacking = false;
-});
